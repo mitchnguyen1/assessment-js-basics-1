@@ -31,6 +31,8 @@ const fujiAcres = [2, 3, 3, 2, 2, 2, 1]
 const galaAcres = [5, 2, 4, 3, 6, 2, 4]
 const pinkAcres = [1, 5, 4, 2, 1, 5, 4]
 
+
+
 const fujiPrice = .89 
 const galaPrice = .64
 const pinkPrice = .55
@@ -50,8 +52,11 @@ const pinkPrice = .55
 */
 
 // CODE HERE
-
-
+let totalAcres = 0;
+for(let i = 0; i<fujiAcres.length; i++){
+    totalAcres += fujiAcres[i] + galaAcres[i] + pinkAcres[i]
+}
+console.log("Total Acres:",totalAcres)
 
 
 
@@ -68,9 +73,8 @@ const pinkPrice = .55
 */
 
 // CODE HERE
-
-
-
+let averageDailyAcres = totalAcres/(fujiAcres.length * 3)
+console.log("Average Daily Acres:",averageDailyAcres)
 
 
 // PROBLEM 3
@@ -106,8 +110,11 @@ let acresLeft = 174
 let days = 0
 
 // CODE HERE
-
-
+while(acresLeft > 0){
+    days++
+    acresLeft -= averageDailyAcres
+}
+console.log("Days:",days)
 
 // PROBLEM 4
 
@@ -135,12 +142,18 @@ let days = 0
 
 // CODE HERE
 
-// let fujiTons =
-// let galaTons =
-// let pinkTons =
+let fujiTons = []
+let galaTons = []
+let pinkTons = []
 
-
-
+for(let i = 0; i<fujiAcres.length;i++){
+    fujiTons.push(fujiAcres[i] * 6.5)
+    galaTons.push(galaAcres[i] * 6.5)
+    pinkTons.push(pinkAcres[i] * 6.5)
+}
+console.log("Fuji Tons:",fujiTons)
+console.log("Gala Tons:",galaTons)
+console.log("Pink Tons:",pinkTons)
 
 
 
@@ -162,13 +175,19 @@ let days = 0
 
 // CODE HERE 
 
-// let fujiPounds =
-// let galaPounds =
-// let pinkPounds =
+let fujiPounds = []
+let galaPounds = []
+let pinkPounds = []
 
+for(let i = 0; i<fujiTons.length; i++){
+    fujiPounds.push(fujiTons[i]*2000)
+    galaPounds.push(galaTons[i]*2000)
+    pinkPounds.push(pinkTons[i]*2000)
+}
 
-
-
+console.log("Fuji Pounds:",fujiPounds)
+console.log("Gala Pounds:",galaPounds)
+console.log("Pink Pounds:",pinkPounds)
 
 
 // PROBLEM 6
@@ -189,13 +208,22 @@ let days = 0
 
 // CODE HERE
 
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
+let fujiProfit = 0
+let galaProfit = 0
+let pinkProfit = 0
 
-
-
-
+for(let i = 0; i < fujiPounds.length; i++){
+    fujiProfit += (fujiPounds[i] * fujiPrice)
+    galaProfit += (galaPounds[i] * galaPrice)
+    pinkProfit += (pinkPounds[i] * pinkPrice)
+}
+//converts cents into dollar amounts and adds two decimals points
+let fujiProfitDollar = (fujiProfit/100).toFixed(2)
+let galaProfitDollar = (galaProfit/100).toFixed(2)
+let pinkProfitDollar = (pinkProfit/100).toFixed(2)
+console.log("Fuji Profits in Dollars:",fujiProfitDollar)
+console.log("Gala Profits in Dollars:",galaProfitDollar)
+console.log("Pink Profits in Dollars:",pinkProfitDollar)
 
 
 // PROBLEM 7
@@ -209,3 +237,5 @@ let days = 0
 */
 
 // CODE HERE
+let totalProfit = fujiProfit + galaProfit + pinkProfit
+console.log(`Total Profit in Dollars: ${(totalProfit/100).toFixed(2)}`)
